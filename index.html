@@ -1,16 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed Asif | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #0a192f;
+            color: #ccd6f6;
+            display: flex;
+            height: 100vh;
+        }
+        .left-panel {
+            width: 35%;
+            background: #112240;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #64ffda;
+        }
+        .right-panel {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+            padding: 80px 20px 50px;
+        }
+        h1 span {
+            color: #64ffda;
+        }
+        .section-card {
+            background: #112240;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            width: 80%;
+            transition: transform 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: scale(1.05);
+        }
+        a {
+            color: #64ffda;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .navbar {
+            background: #112240;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .navbar a {
+            color: #64ffda;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 0;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar a:hover, .navbar a.active {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .contact-icons a {
+            color: #64ffda;
+            font-size: 24px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .contact-icons a:hover {
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hi, I'm Mohamed Asif!</h1>
-    <p>🚀 SDET | Automation | Performance Engineering</p>
-    <h2>Projects</h2>
-    <ul>
-        <li><a href="https://github.com/mohamedasif/expense-tracker">Expense Tracker</a></li>
-        <li><a href="https://github.com/mohamedasif/jmeter-load-test">JMeter Load Testing</a></li>
-        <li><a href="https://github.com/mohamedasif/webdriverio-setup">WebDriverIO Framework</a></li>
-    </ul>
+    <div class="left-panel">
+        <img src="profile.jpg" alt="Mohamed Asif" class="profile-img">
+        <h1>Hi, I'm <span>Mohamed Asif</span></h1>
+        <p>SDET | Java | Performance Engineering</p>
+        <div class="contact-icons">
+            <a href="mailto:asif@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <nav class="navbar">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+        </nav>
+    </div>
+    <div class="right-panel">
+        <section id="about" class="about section-card">
+            <h2>About Me</h2>
+            <p>I am an experienced Software Development Engineer in Test (SDET) with expertise in automation testing, Java, and performance engineering. I have a passion for building robust and scalable test automation frameworks that ensure high-quality software. Over the years, I have worked on multiple projects involving test automation, CI/CD integration, and performance optimization. I am always keen on learning new technologies and improving my skill set. Apart from testing, I am interested in cloud computing, DevOps, and software architecture.</p>
+        </section>
+
+        <section id="skills" class="skills section-card">
+            <h2>Skills</h2>
+            <p>My technical expertise includes Java, Selenium, Playwright, JMeter, ReactJS, Spring Boot, AWS, Docker, Kubernetes, Terraform, and much more. I have experience in API testing using Rest Assured and Postman, as well as performance testing using JMeter and k6. My database skills include MySQL and MongoDB, and I have hands-on experience with cloud platforms like AWS and Azure. I am also proficient in CI/CD tools like Jenkins, GitHub Actions, and Bamboo, ensuring efficient software delivery pipelines.</p>
+        </section>
+
+        <section id="projects" class="projects section-card">
+            <h2>Projects</h2>
+            <h3>Project One</h3>
+            <p>This project involved building an end-to-end test automation framework for a SaaS-based application. The framework was developed using Java, Selenium, and TestNG, integrated with Jenkins for continuous testing. I designed data-driven and keyword-driven approaches, reducing manual testing effort by 70%.</p>
+            <a href="#">View on GitHub</a>
+            <h3>Project Two</h3>
+            <p>Developed a microservices testing framework using Java and Rest Assured. The framework supported contract testing, functional testing, and performance benchmarking. By integrating with Dockerized test environments, it improved testing efficiency significantly.</p>
+            <a href="#">View on GitHub</a>
+        </section>
+
+        <section id="experience" class="experience section-card">
+            <h2>Experience</h2>
+            <p>I have worked as an SDET for multiple organizations, specializing in automation testing, performance engineering, and test framework development. I have successfully led automation initiatives, reducing regression testing time from days to hours. In my previous roles, I collaborated with developers, product managers, and DevOps engineers to streamline the development and deployment process. My experience also includes training junior engineers and mentoring teams in test automation best practices.</p>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Mohamed Asif | Portfolio</p>
+        </footer>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".navbar a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 50) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
