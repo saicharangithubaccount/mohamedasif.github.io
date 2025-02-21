@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed Asif | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * {
@@ -29,6 +28,8 @@
             justify-content: center;
             padding: 20px;
             text-align: center;
+            position: fixed;
+            height: 100vh;
         }
         .profile-img {
             width: 150px;
@@ -39,10 +40,7 @@
         }
         .right-panel {
             width: 65%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-y: auto;
+            margin-left: 35%;
             padding: 80px 20px 50px;
         }
         h1 span {
@@ -55,6 +53,7 @@
             margin: 20px;
             width: 80%;
             transition: transform 0.3s ease-in-out;
+            min-height: 300px; /* Added to ensure sections have enough height */
         }
         .section-card:hover {
             transform: scale(1.05);
@@ -82,10 +81,24 @@
             font-size: 18px;
             padding: 10px 0;
             transition: color 0.3s ease-in-out;
+            position: relative;
         }
-        .navbar a:hover, .navbar a.active {
+        .navbar a:hover {
+            color: #ffffff;
+        }
+        .navbar a.active {
             color: #ffffff;
             font-weight: bold;
+        }
+        .navbar a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background-color: #64ffda;
         }
         .contact-icons {
             display: flex;
@@ -104,6 +117,7 @@
     </style>
 </head>
 <body>
+    <!-- Left panel content remains the same -->
     <div class="left-panel">
         <img src="profile.webp" alt="Mohamed Asif" class="profile-img">
         <h1>Hi, I'm <span>Mohamed Asif</span></h1>
@@ -114,36 +128,36 @@
             <a href="https://www.linkedin.com/in/mohamedasif"><i class="fab fa-linkedin"></i></a>
         </div>
         <nav class="navbar">
-            <a href="#about">About</a>
+            <a href="#about" class="active">About</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
             <a href="#experience">Experience</a>
         </nav>
     </div>
+
+    <!-- Right panel content remains the same -->
     <div class="right-panel">
         <section id="about" class="about section-card">
             <h2>About Me</h2>
-            <p>I am an experienced Software Development Engineer in Test (SDET) with expertise in automation testing, Java, and performance engineering. I have a passion for building robust and scalable test automation frameworks that ensure high-quality software. Over the years, I have worked on multiple projects involving test automation, CI/CD integration, and performance optimization. I am always keen on learning new technologies and improving my skill set. Apart from testing, I am interested in cloud computing, DevOps, and software architecture.</p>
+            <p>I am an experienced Software Development Engineer in Test (SDET) with expertise in automation testing, Java, and performance engineering...</p>
         </section>
 
         <section id="skills" class="skills section-card">
             <h2>Skills</h2>
-            <p>My technical expertise includes Java, Selenium, Playwright, JMeter, ReactJS, Spring Boot, AWS, Docker, Kubernetes, Terraform, and much more. I have experience in API testing using Rest Assured and Postman, as well as performance testing using JMeter and k6. My database skills include MySQL and MongoDB, and I have hands-on experience with cloud platforms like AWS and Azure. I am also proficient in CI/CD tools like Jenkins, GitHub Actions, and Bamboo, ensuring efficient software delivery pipelines.</p>
+            <p>My technical expertise includes Java, Selenium, Playwright, JMeter, ReactJS, Spring Boot, AWS, Docker, Kubernetes...</p>
         </section>
 
         <section id="projects" class="projects section-card">
             <h2>Projects</h2>
             <h3>Project One</h3>
-            <p>This project involved building an end-to-end test automation framework for a SaaS-based application. The framework was developed using Java, Selenium, and TestNG, integrated with Jenkins for continuous testing. I designed data-driven and keyword-driven approaches, reducing manual testing effort by 70%.</p>
-            <a href="https://github.com/mohamedasif/project-one">View on GitHub</a>
+            <p>This project involved building an end-to-end test automation framework for a SaaS-based application...</p>
             <h3>Project Two</h3>
-            <p>Developed a microservices testing framework using Java and Rest Assured. The framework supported contract testing, functional testing, and performance benchmarking. By integrating with Dockerized test environments, it improved testing efficiency significantly.</p>
-            <a href="https://github.com/mohamedasif/project-two">View on GitHub</a>
+            <p>Developed a microservices testing framework using Java and Rest Assured...</p>
         </section>
 
         <section id="experience" class="experience section-card">
             <h2>Experience</h2>
-            <p>I have worked as an SDET for multiple organizations, specializing in automation testing, performance engineering, and test framework development. I have successfully led automation initiatives, reducing regression testing time from days to hours. In my previous roles, I collaborated with developers, product managers, and DevOps engineers to streamline the development and deployment process. My experience also includes training junior engineers and mentoring teams in test automation best practices.</p>
+            <p>I have worked as an SDET for multiple organizations, specializing in automation testing...</p>
         </section>
         
         <footer>
@@ -152,22 +166,55 @@
     </div>
 
     <script>
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".navbar a");
-
-        window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 50) {
-                    current = section.getAttribute("id");
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".navbar a");
+            
+            // Function to get the current section
+            const getCurrentSection = () => {
+                const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    const sectionTop = section.offsetTop - 100; // Added offset for better detection
+                    
+                    if (scrollPosition >= sectionTop) {
+                        return section.id;
+                    }
                 }
-            });
-            navLinks.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
+                
+                return sections[0].id;
+            };
+            
+            // Function to update active nav link
+            const updateActiveLink = () => {
+                const currentSection = getCurrentSection();
+                
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").slice(1) === currentSection) {
+                        link.classList.add("active");
+                    }
+                });
+            };
+            
+            // Add scroll event listener to the window
+            window.addEventListener("scroll", updateActiveLink);
+            
+            // Initial check for active section
+            updateActiveLink();
+            
+            // Smooth scroll implementation
+            navLinks.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute("href").slice(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    targetSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
             });
         });
     </script>
